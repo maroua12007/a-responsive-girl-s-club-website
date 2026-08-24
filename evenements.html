@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Rose Club 🌸</title>
+    <style>
+        /* Styles spécifiques à la page Événements */
+        body {
+            font-family: 'segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #ffe0e7 0%, #fff5f8 70%, #ffffff 100%);
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width :1500px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color:#d63384;
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+
+        .sous-titre {
+            text-align: center;
+            color: hotpink;
+            margin-bottom: 30px;
+        }
+
+        
+        .filtres {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .filtre {
+            background-color:#ffe0e7;
+            border:none;
+            padding: 10px 25px;
+            border-radius: 30px;
+            font-size: 16px;
+            cursor: pointer;
+            color: #d63384;
+            margin: 10px;
+        }
+
+        .filtre:hover {
+            background-color: #ffb6c1;
+        }
+
+        /* Classe pour le bouton actif */
+        .btn-actif {
+            background-color: #d63384;
+            color: white;
+        }
+
+        /* Grille des événements */
+          .grille-evenements {
+           text-align: center;
+          }
+
+
+        /* Carte événement */
+        .carte {
+            background-color:white;
+            border-radius: 15px;
+            display:inline-block;
+            padding: 10px;
+            width: 30%;
+            margin:20px;
+            
+            border-left: 10px solid #d63384;
+            border-right: 10px solid #d63384;
+        }
+
+        .carte:hover {
+              transform: translate3d(0, -5px, 0);
+        }
+
+        .carte h3 {
+            color: #d63384;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .categorie {
+            display: inline-block;
+            background-color: #ffe0e7;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            color:#d63384;
+            margin: 10px ;
+        }
+
+        .date {
+            color: #f45ea9;
+            font-size: 14px;
+            margin: 5px ;
+        }
+
+        .description {
+            color: #666;
+            line-height: 2;
+        }
+
+        /* Message aucun résultat */
+        .aucun-resultat {
+            text-align: center;
+            color: #d63384;
+            font-size: 1.2rem;
+            padding: 50px;
+            background-color: #ffe0e7;
+            border-radius: 15px;
+        }
+
+    </style>
+    <link rel="stylesheet" href="style.css" />
+
+</head>
+<body>
+
+    <!-- Barre de navigation commune -->
+        <nav>
+        <div class="logo">🌸 Rose Club</div>
+        <ul class="nav">
+            <li><a href="accueil.html">Accueil</a></li>
+            <li><a href="membres.html">Membres</a></li>
+            <li><a href="evenements.html">Événements</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <h1>🌸 Nos Événements 🌸</h1>
+        <p class="sous-titre">Des moments rien que pour toi, entre filles</p>
+
+        <!-- Boutons de filtre -->
+        <div class="filtres">
+            <button class="filtre" id="btnTous">Tous</button>
+            <button class="filtre" id="btnSoiree">Soirée 🌙</button>
+            <button class="filtre" id="btnAtelier">Atelier ✨</button>
+            <button class="filtre" id="btnSortie">Sortie 👜</button>
+            <button class="filtre" id="btnConference">Conférence 🎤</button>
+            <button class="filtre" id="btnCompetition">Compétition 🏆</button>
+        </div>
+
+        <!-- Grille des événements -->
+        <div id="grille" class="grille-evenements"></div>
+    </div>
+
+   <script>
+    const evenements = [
+        { titre: "Soirée Printemps Rose", date: "15 Mai 2026", categorie: "Soirée", description: "Célébrons le printemps entre filles 🌸" },
+        { titre: "Atelier Bien-être & Self-care ", date: "20 Mai 2026", categorie: "Atelier", description: "Massages, masques faits maison et relaxation" },
+        { titre: "Brunch entre copines", date: "25 Mai 2026", categorie: "Sortie", description: "Un moment gourmand et convivial" },
+        { titre: "Conférence Ose être toi-même", date: "30 Mai 2026", categorie: "Conférence", description: "Développe ta confiance en toi" },
+        { titre: "Atelier Création de bijoux", date: "05 Juin 2026", categorie: "Atelier", description: "Fabrique ton propre bracelet personnalisé" },
+        { titre: "Sortie shopping solidaire", date: "10 Juin 2026", categorie: "Sortie", description: "Découverte de boutiques locales entre filles" },
+        { titre: "Soirée pyjama & films", date: "15 Juin 2026", categorie: "Soirée", description: "Nuit cocooning avec popcorn et goodies" },
+        { titre: "Compétition de chant", date: "20 Juin 2026", categorie: "Compétition", description: "Montre ton talent vocal, ambiance fun" }
+    ];
+
+    var grille = document.getElementById('grille');
+    var btnTous = document.getElementById('btnTous');
+    var btnSoiree = document.getElementById('btnSoiree');
+    var btnAtelier = document.getElementById('btnAtelier');
+    var btnSortie = document.getElementById('btnSortie');
+    var btnConference = document.getElementById('btnConference');
+    var btnCompetition = document.getElementById('btnCompetition');
+
+
+    function enleverClasseActif() {
+        btnTous.classList.remove('btn-actif');
+        btnSoiree.classList.remove('btn-actif');
+        btnAtelier.classList.remove('btn-actif');
+        btnSortie.classList.remove('btn-actif');
+        btnConference.classList.remove('btn-actif');
+        btnCompetition.classList.remove('btn-actif');
+    }
+
+    function afficherEvenements(categorieChoisie) {
+
+        grille.innerHTML = "";
+
+
+        var evenementsFiltres = [];
+
+        if (categorieChoisie === "Tous") {
+            evenementsFiltres = evenements;
+        } else {
+            for (var i = 0; i < evenements.length; i++) {
+                if (evenements[i].categorie === categorieChoisie) {
+
+                    evenementsFiltres[evenementsFiltres.length] = evenements[i];
+                }
+            }
+        }
+
+
+        if (evenementsFiltres.length === 0) {
+            var message = document.createElement('div');
+            message.className = 'aucun-resultat';
+            message.innerHTML = "💔 Aucun événement trouvé dans cette catégorie";
+            grille.appendChild(message);
+            return;
+        }
+
+
+        for (var j = 0; j < evenementsFiltres.length; j++) {
+            var event = evenementsFiltres[j];
+
+            var carte = document.createElement('div');
+            carte.className = 'carte';
+
+            carte.innerHTML = '<h3>' + event.titre + '</h3>' +
+                '<div class="categorie">' + event.categorie + '</div>' +
+                '<div class="date">📅 ' + event.date + '</div>' +
+                '<div class="description">' + event.description + '</div>';
+
+            grille.appendChild(carte);
+        }
+    }
+
+    function clicTous() {
+        enleverClasseActif();
+        btnTous.className = btnTous.className + " btn-actif";
+        afficherEvenements("Tous");
+    }
+
+    function clicSoiree() {
+        enleverClasseActif();
+        btnSoiree.className = btnSoiree.className + " btn-actif";
+        afficherEvenements("Soirée");
+    }
+
+    function clicAtelier() {
+        enleverClasseActif();
+        btnAtelier.className = btnAtelier.className + " btn-actif";
+        afficherEvenements("Atelier");
+    }
+
+    function clicSortie() {
+        enleverClasseActif();
+        btnSortie.className = btnSortie.className + " btn-actif";
+        afficherEvenements("Sortie");
+    }
+
+    function clicConference() {
+        enleverClasseActif();
+        btnConference.className = btnConference.className + " btn-actif";
+        afficherEvenements("Conférence");
+    }
+
+    function clicCompetition() {
+        enleverClasseActif();
+        btnCompetition.className = btnCompetition.className + " btn-actif";
+        afficherEvenements("Compétition");
+    }
+
+
+    btnTous.onclick = clicTous;
+    btnSoiree.onclick = clicSoiree;
+    btnAtelier.onclick = clicAtelier;
+    btnSortie.onclick = clicSortie;
+    btnConference.onclick = clicConference;
+    btnCompetition.onclick = clicCompetition;
+
+
+    btnTous.className = btnTous.className + " btn-actif";
+    afficherEvenements("Tous");
+</script>
+
+  <footer>
+    <div class="fl"> Rose Club 🌸</div>
+    <p> © 2025 Rose Club — Fait avec 💕 pour toutes les filles</p>
+</footer>  
+
+</body>
+
+</html>

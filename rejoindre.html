@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rose Club 🌸</title>
+    <style>
+
+        
+        .container h2 {
+            font-size: 50px;
+
+
+        }
+
+        .container {
+            text-align: center;
+            background-color: pink;
+            color: #d63384;
+            padding: 50px;
+            margin: 50px auto;
+            width: 50%;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        label {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        input,
+        select,
+        textarea {
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: palevioletred;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 20px;
+
+        }
+
+        button:hover {
+            background-color: #ba5576;
+        }
+
+        .error {
+            color: red;
+            font-size: 12px;
+            text-align: left;
+            margin-top: 5px;
+            display: none;
+        }
+
+        #message {
+            margin-top: 50px;
+            font-weight: bold;
+            text-align: center;
+            font-size: 18px;
+
+        }
+    </style>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+    <nav>
+        <div class="logo">🌸 Rose Club</div>
+        <ul>
+
+
+            <li> <a href="accueil.html">Accueil</a></li>
+            <li><a href="membres.html">Membres</a></li>
+            <li><a href="evenements.html">Événements</a></li>
+
+        </ul>
+    </nav>
+
+    <div class="container" id="form-container">
+        <h2>🌸Rejoignez-nous !🌸</h2>
+        <form id="form">
+            <label for="nom">Nom complet:</label>
+            <input type="text" name="nom" id="nom">
+            <div class="error" id="errnom"></div>
+
+            <label for="num">Numéro Étudiant:</label>
+            <input type="text" name="num" id="num" placeholder="GI-S4-XXXX">
+            <div class="error" id="errnum"></div>
+
+            <label for="fil">Filière:</label>
+            <select id="fil">
+                <option value="">Choisir la filière</option>
+                <option value="GI">GI</option>
+                <option value="SI">SI</option>
+                <option value="RT">RT</option>
+            </select>
+            <div class="error" id="errfil"></div>
+
+            <label for="email">Email universitaire:</label>
+            <input type="email" name="email" id="email">
+            <div class="error" id="erremail"></div>
+
+            <label>Motivation:</label>
+            <textarea id="motivation" placeholder="Votre motivation"></textarea>
+            <div id="errmot" class="error"></div>
+
+            <button type="submit">S'inscrire</button>
+        </form>
+
+    </div>
+    <div id="message"></div>
+    <script>
+        document.getElementById("form").addEventListener("submit", function (event) {
+            event.preventDefault();   // Empêche l'envoi du formulaire
+
+
+            // Récupération des valeurs
+            let nom = document.getElementById("nom").value.trim();
+            let num = document.getElementById("num").value.trim();
+            let fil = document.getElementById("fil").value;
+            let email = document.getElementById("email").value.trim();
+            let motivation = document.getElementById("motivation").value.trim();
+
+
+
+            // Réinitialisation des messages d'erreur
+            let errors = document.querySelectorAll(".error");
+            errors.forEach(err => err.style.display = "none");
+
+            let isValid = true;
+
+            // Validation du nom
+            if (nom === "") {
+                document.getElementById("errnom").innerText = "Le nom est requis";
+                document.getElementById("errnom").style.display = "block";
+                isValid = false;
+            }
+
+            // Validation du numéro étudiant
+            if (num === "") {
+                document.getElementById("errnum").innerText = "Le numéro étudiant est requis";
+                document.getElementById("errnum").style.display = "block";
+                isValid = false;
+            } else if (!num.match(/^(GI|SI|RT)-S[0-9]-[0-9]{4}$/)) {
+                document.getElementById("errnum").innerText = "Format invalide (ex: GI-S4-1234)";
+                document.getElementById("errnum").style.display = "block";
+                isValid = false;
+            }
+
+            // Validation de la filière
+            if (fil === "") {
+                document.getElementById("errfil").innerText = "Veuillez choisir une filière";
+                document.getElementById("errfil").style.display = "block";
+                isValid = false;
+            }
+
+            // Validation de l'email
+            if (email === "") {
+                document.getElementById("erremail").innerText = "L'email est requis";
+                document.getElementById("erremail").style.display = "block";
+                isValid = false;
+            } else if (!email.endsWith("@usmba.ac.ma")) {
+                document.getElementById("erremail").innerText = "Email invalide";
+                document.getElementById("erremail").style.display = "block";
+                isValid = false;
+            }
+
+            // Validation de la motivation
+            if (motivation === "") {
+                document.getElementById("errmot").innerText = "La motivation est requise";
+                document.getElementById("errmot").style.display = "block";
+                isValid = false;
+            }
+
+            // Si tout est valide
+            if (isValid) {
+
+                document.getElementById("form-container").style.display = "none";
+
+
+                document.getElementById("message").innerHTML = `
+              🎉 <h3>Bienvenue ${nom} !</h3>
+            <p>Votre inscription au <b>Rose Club🌸</b> est réussie.</p>
+            <p>📚 Filière : ${fil}</p>
+            <p>🆔 Numéro : ${num}</p>
+            <p>📧 Email : ${email}</p>`;
+                document.getElementById("message").style.color = "green";
+            } else {
+                document.getElementById("message").innerHTML = "❌ Veuillez remplir correctement tous les champs";
+                document.getElementById("message").style.color = "red";
+            }
+        });
+    </script>
+    <footer>
+        <div class="fl"> Rose Club 🌸</div>
+        <p> © 2025 Rose Club — Fait avec 💕 pour toutes les filles</p>
+    </footer>
+
+</body>
+
+
+</html>

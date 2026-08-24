@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Rose Club 🌸</title>
+
+    <style>
+        /* BODY */
+        body {
+            font-family: Arial;
+            background: #f3e2ef;
+            color: white;
+            margin: 0;
+        }
+
+        /* NAVBAR */
+
+        /* 🔥 TITRE EN ROSE SOMBRE */
+        h1 {
+            text-align: center;
+            font-size: 50px;
+            color: #d63384;
+            /* rose sombre */
+        }
+
+        /* SEARCH */
+        #search {
+            display: block;
+            margin: 20px auto;
+            padding: 10px;
+            width: 300px;
+            border-radius: 8px;
+            border: none;
+        }
+
+        /* CARTES */
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 50px;
+        }
+
+        .carte {
+            background: #f5a9d1;
+            margin: 10px;
+            padding: 15px;
+            width: 200px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 0 10px black;
+            color: white;
+            transition: transform 0.3s;
+        }
+
+        .carte:hover {
+            transform: scale(1.05);
+        }
+
+        /* MESSAGE */
+        #message {
+            text-align: center;
+            color: #f85c5c;
+            display: none;
+        }
+    </style>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+    <nav>
+        <div class="logo">🌸 Rose Club</div>
+        <ul>
+
+
+            <li> <a href="accueil.html">Accueil</a></li>
+            <li><a href="membres.html">Membres</a></li>
+            <li><a href="evenements.html">Événements</a></li>
+
+        </ul>
+    </nav>
+
+    <h1>🌸Liste des Membres 🌸</h1>
+
+    <input type="text" id="search" placeholder="Rechercher un membre...">
+
+    <p id="message">Aucun membre trouvé</p>
+
+    <div class="container" id="container"></div>
+
+    <script>
+
+        const membres = [
+            { nom: "Sara sara", role: "Présidente", filiere: "GI" },
+            { nom: "hajar ghabbour", role: "Vice-président", filiere: "RT" },
+            { nom: "Ahmed Amrani", role: "Secrétaire", filiere: "GI" },
+            { nom: "Fatima Zahra ellebbar", role: "Trésorière", filiere: "GI" },
+            { nom: "Hiba Erraki", role: "Membre", filiere: "GI" },
+            { nom: "yassmine khouaja", role: "Responsable Event", filiere: "SI" },
+            { nom: "Maroua El Kharoubi", role: "Membre", filiere: "GI" },
+            { nom: "Salma iachich", role: "Membre", filiere: "GI" },
+            { nom: "Manar ez-zaimi", role: "Membre", filiere: "SI" }
+        ];
+
+        function afficherMembres(liste) {
+            const container = document.getElementById("container");
+            const message = document.getElementById("message");
+
+            container.innerHTML = "";
+
+            if (liste.length === 0) {
+                message.style.display = "block";
+                return;
+            } else {
+                message.style.display = "none";
+            }
+
+            liste.forEach(membre => {
+                const div = document.createElement("div");
+                div.className = "carte";
+                div.innerHTML = `
+            <h3>${membre.nom}</h3>
+            <p>${membre.role}</p>
+            <p>${membre.filiere}</p>
+        `;
+                container.appendChild(div);
+            });
+        }
+
+        document.getElementById("search").addEventListener("input", function () {
+            const valeur = this.value.toLowerCase();
+
+            const resultat = membres.filter(m =>
+                m.nom.toLowerCase().includes(valeur) ||
+                m.role.toLowerCase().includes(valeur)
+            );
+
+            afficherMembres(resultat);
+        });
+
+        afficherMembres(membres);
+
+    </script>
+    <footer>
+    <div class="fl"> Rose Club 🌸</div>
+    <p> © 2025 Rose Club — Fait avec 💕 pour toutes les filles</p>
+</footer>
+
+</body>
+
+
+</html>

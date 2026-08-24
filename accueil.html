@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+    <title>Rose Club 🌸</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Nunito:wght@300;400;600&display=swap"
+        rel="stylesheet" />
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0  }
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: #fff5f8;
+            color: #4a1a2e
+        }
+        .hero {
+            text-align: center;
+            padding: 80px 20px 60px;
+            background: linear-gradient(160deg, #fff0f6, #fce4ec, #fff5f8);
+            position: relative;
+            overflow: hidden
+        }
+        .badge {
+            display: inline-block;
+            background: #fff;
+            border: 1.5px solid #f48fb1;
+            color: #c2185b;
+            font-size: .72rem;
+            letter-spacing: .14em;
+            text-transform: uppercase;
+            padding: .4rem 1.2rem;
+            border-radius: 2rem;
+            margin-bottom: 1.9rem
+        }
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.4rem, 6vw, 4.5rem);
+            color: #880e4f;
+            margin-bottom: 1.2rem
+        }
+        h1 em {
+            font-style: italic;
+            color: #e91e8c
+        }
+        .hero p {
+            font-size: 1.05rem;
+            color: #9e4a6a;
+            max-width: 520px;
+            margin: 0 auto 2.5rem;
+            line-height: 1.8;
+        }
+        .btn {
+            display: inline-block;
+            background: #e91e8c;
+            color: #e6e0e0;
+            padding: .85rem 2.2rem;
+            border-radius: 3rem;
+            text-decoration: none;
+        }
+        .cd {
+            background: #941157;
+            padding: 50px 20px;
+            text-align: center
+        }
+        .cd .lbl {
+            font-size: .7rem;
+            letter-spacing: .18em;
+            text-transform: uppercase;
+            color: #f8bbd9;
+            margin-bottom: .6rem
+        }
+        .cd h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            color: #fff;
+            margin-bottom: 2.5rem
+        }
+        .cd-row {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+        .cd-box {
+            background: rgba(255, 255, 255, .1);
+            border: 1px solid rgba(255, 255, 255, .2);
+            border-radius: 14px;
+            padding: 14px 20px;
+            min-width: 80px;
+            text-align: center;
+        }
+        .cd-box span {
+            display: block;
+            font-family: 'Playfair Display', serif;
+            font-size: 2.6rem;
+            color: #fff;
+        }
+        .cd-box p {
+            font-size: .65rem;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: #f8bbd9;
+            margin-top: 5px
+        }
+         .sep {
+            font-size: 2rem;
+            color: rgba(255, 255, 255, 0.886);
+            align-self: flex-start;
+            margin-top: 8px
+        }
+        #msg {
+            display: none;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: #fff;
+            font-style: italic
+        }
+        .desc {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 30px;
+            text-align: center
+        }
+        .tag {
+            font-size: .68rem;
+            letter-spacing: .18em;
+            text-transform: uppercase;
+            color: #e91e8c;
+            margin-bottom: .8rem;
+            display: block
+        }
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: #992663;
+            margin-bottom: 1.2rem
+        }
+        .desc p {
+            font-size: 1rem;
+            color: #802246;
+            line-height: 1.9;
+            font-weight: 300
+        }
+        .val {
+            background: #d3a2bc;
+            padding: 60px 20px;
+            text-align: center;
+            border-top: 2px solid #ffd6e7;
+            border-bottom: 2px solid #ffd6e7
+        }
+        .grid {
+             display: flex;
+             justify-content:center;
+             gap: 20px;
+             max-width: 960px;
+             margin: 0 auto; 
+}
+        .card {
+            background: #fff;
+            border: 1.5px solid #ffd6e7;
+            border-radius: 18px;
+            padding: 26px 20px;
+            width: 200px;
+            justify-items: center;
+        }
+        .ico {
+            font-size: 2.2 rem;
+            margin-bottom: 10px
+        }
+        .name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1rem;
+            color: #880e4f;
+            margin-bottom: 10px;
+        }
+    </style>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <nav>
+        <div class="logo">🌸 Rose Club</div>
+        <ul>
+            <li><a href="#">Accueil   </a></li>
+            <li><a href="membres.html">Membres  </a></li>
+            <li><a href="evenements.html ">&Eacutevénements  </a></li>
+        </ul>
+    </nav>
+    <section class="hero">
+        <div class="badge">✦ Réservé aux filles ✦</div>
+        <h1>Bienvenue au<br><em>Rose Club</em> 🌷</h1>
+        <p>Un espace chaleureux pour toutes les filles qui veulent partager leurs passions et créer des amitiés
+            inoubliables.</p>
+        <a href="rejoindre.html" class="btn">Rejoindre le club 💕</a>
+    </section>
+    <div class="cd">
+        <p class="lbl">✦ Prochain événement ✦</p>
+        <h2>Soirée Printemps Rose 🌸</h2>
+        <div class="cd-row" id="cd-row">
+            <div class="cd-box"><span id="j">00</span>
+                <p>Jours</p>
+            </div>
+            <div class="sep">:</div>
+            <div class="cd-box"><span id="h">00</span>
+                <p>Heures</p>
+            </div>
+            <div class="sep">:</div>
+            <div class="cd-box"><span id="m">00</span>
+                <p>Minutes</p>
+            </div>
+            <div class="sep">:</div>
+            <div class="cd-box"><span id="s">00</span>
+                <p>Secondes</p>
+            </div>
+        </div>
+        <p id="msg">🎉 L'événement a commencé ! 🎉</p>
+    </div>
+    <section class="desc">
+        <span class="tag"> Qui sommes-nous ? </span>
+        <h2>Un club pensé pour vous 💖</h2>
+        <p>Le Rose Club est une association dédiée aux filles qui souhaitent vivre des moments de partage, de créativité
+            et de bonne humeur tout au long de l'année.</p>
+    </section>
+    <section class="val">
+        <h2>Nos valeurs 💗</h2>
+        <div class="grid">
+            <div class="card">
+                <div class="ico">🤝</div>
+                <div class="name">Solidarité</div>
+                <div class="dsc">On s'entraide et on se soutient toujours.</div>
+            </div>
+            <div class="card">
+                <div class="ico">🎨</div>
+                <div class="name">Créativité</div>
+                <div class="dsc">On exprime nos talents sans limite.</div>
+            </div>
+            <div class="card">
+                <div class="ico">💪</div>
+                <div class="name">Confiance</div>
+                <div class="dsc">On se respecte et on se fait confiance.</div>
+            </div>
+            <div class="card">
+                <div class="ico">🌟</div>
+                <div class="name">Excellence</div>
+                <div class="dsc">On donne toujours le meilleur de soi.</div>
+            </div>
+        </div>
+    </section>
+    <section  class="val" style="background:#fff5f8;border:none">
+        <h2>Nos activités 🌺</h2>
+        <div class="grid">
+            <div class="card">
+                <div class="ico">💅</div>
+                <div class="name">Beauté</div>
+                <div class="dsc">Maquillage, nail art et soins.</div>
+            </div>
+            <div class="card">
+                <div class="ico">📚</div>
+                <div class="name">Lecture</div>
+                <div class="dsc">Lectures et discussions littéraires.</div>
+            </div>
+            <div class="card">
+                <div class="ico">🎶</div>
+                <div class="name">Danse & musique</div>
+                <div class="dsc">Soirées dansantes et concerts.</div>
+            </div>
+            <div class="card">
+                <div class="ico">🏃‍♀️</div>
+                <div class="name">Sport & yoga</div>
+                <div class="dsc">Séances bien-être et fitness.</div>
+            </div>
+        </div>
+    </section>
+    <script>
+        const e = new Date('2026-05-15T20:00:00');
+        function t() {
+            const d = e - new Date();
+            if (d <= 0) {
+                document.getElementById('cd-row').style.display = 'none';
+                document.getElementById('msg').style.display = 'block';
+                return;
+            }
+            const p = n => n < 10 ? '0' + n : n;
+            document.getElementById('j').textContent = p(Math.floor(d / 86400000));
+            document.getElementById('h').textContent = p(Math.floor(d % 86400000 / 3600000));
+            document.getElementById('m').textContent = p(Math.floor(d % 3600000 / 60000));
+            document.getElementById('s').textContent = p(Math.floor(d % 60000 / 1000));
+        } t();
+        setInterval(t, 1000);
+    </script>
+    <footer>
+        <div class="fl"> Rose Club 🌸</div>
+        <p> © 2025 Rose Club — Fait avec 💕 pour toutes les filles</p>
+    </footer>
+</body>
+</html>
